@@ -36,10 +36,8 @@ jobs:
         run: |
           echo "GORELEASER_CURRENT_TAG=${{ steps.vars.outputs.version }}" >> $GITHUB_ENV
 
-      - name: Set up GoReleaser
+      - name: Build with GoReleaser
         uses: goreleaser/goreleaser-action@v6
         with:
-          version: latest
-
-      - name: Build with GoReleaser
-        run: goreleaser build --clean --single-target --snapshot
+          version: '~> v2'
+          args: build --clean --single-target --snapshot
