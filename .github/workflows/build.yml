@@ -25,16 +25,10 @@ jobs:
 
       - name: Set up Yarn
         run: npm install -g yarn
-        
-      - name: Get version info
-        id: vars
-        run: |
-          echo "commit_sha=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-          echo "version=$(git describe --tags --always)" >> $GITHUB_OUTPUT
 
       - name: Set environment for GoReleaser
         run: |
-          echo "GORELEASER_CURRENT_TAG=${{ steps.vars.outputs.version }}" >> $GITHUB_ENV
+          echo "GORELEASER_CURRENT_TAG=v0.0.0-dev" >> $GITHUB_ENV
 
       - name: Build with GoReleaser
         uses: goreleaser/goreleaser-action@v6
